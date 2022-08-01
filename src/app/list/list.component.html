@@ -1,0 +1,38 @@
+<button class="write-question-button" mat-fab color="primary"
+        aria-label="Write new Question" [matTooltip]="'Ask new Question'"
+        [routerLink]="'/add-question'">
+  <mat-icon>edit</mat-icon>
+</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"><a [routerLink]="['/question', element.id]">{{element.title}}</a></td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="submissionTime">
+    <th mat-header-cell *matHeaderCellDef> Submission time </th>
+    <td mat-cell *matCellDef="let element"> {{element.submissionTime}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="viewNumber">
+    <th mat-header-cell *matHeaderCellDef> Views </th>
+    <td mat-cell *matCellDef="let element"> {{element.viewNumber}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="voteNumber">
+    <th mat-header-cell *matHeaderCellDef> Votes </th>
+    <td mat-cell *matCellDef="let element"> {{element.voteNumber}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

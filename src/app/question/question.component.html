@@ -1,0 +1,38 @@
+<div class="main-content">
+  <mat-card class="example-card">
+    <mat-card-subtitle>{{(question | async)?.viewNumber}} views </mat-card-subtitle>
+    <mat-card-title>{{(question | async)?.title}}</mat-card-title>
+    <mat-card-content>
+      <p>{{(question | async)?.message}}</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+      <button mat-icon-button color="primary" (click)="likeQuestion()" aria-label="Example icon button with a menu icon">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <span>{{(question | async)?.voteNumber}}</span>
+      <button mat-icon-button color="warn" (click)="dislikeQuestion()" aria-label="Example icon button with a heart icon">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" [routerLink]="['/question', questionId, 'new-answer']" aria-label="Example icon button with a heart icon">
+        <mat-icon>message</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="answer-card" *ngFor="let answer of (answers | async)">
+    <mat-card-content>
+      <p>{{answer.message}}</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+      <button mat-icon-button color="primary" (click)="likeAnswer(answer.id)" aria-label="Example icon button with a menu icon">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <span>{{answer.voteNumber}}</span>
+      <button mat-icon-button color="warn" (click)="dislikeAnswer(answer.id)" aria-label="Example icon button with a heart icon">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

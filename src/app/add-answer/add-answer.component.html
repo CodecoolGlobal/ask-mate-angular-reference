@@ -1,0 +1,20 @@
+<mat-card class="main-content">
+  <mat-card-title>Post your answer</mat-card-title>
+  <mat-card-content class="card-content">
+    <mat-form-field appearance="fill">
+      <mat-label>Answer Message</mat-label>
+      <textarea matInput placeholder="Your Answer Message goes here..." [(ngModel)]="answerText"></textarea>
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-divider inset></mat-divider>
+
+  <mat-card-actions>
+    <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon" (click)="onSubmit()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" [routerLink]="'/list'">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

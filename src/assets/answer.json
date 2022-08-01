@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "submissionTime": 1493398154000,
+    "voteNumber": 4,
+    "questionId": 1,
+    "message": "You need to use brackets: my_list = []",
+    "image": ""
+  },
+  {
+    "id": 2,
+    "submissionTime": 1493088154000,
+    "voteNumber": 35,
+    "questionId": 1,
+    "message": "Look it up in the Python docs",
+    "image": ""
+  }
+]
