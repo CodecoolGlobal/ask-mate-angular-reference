@@ -1,23 +1,22 @@
-
 <mat-card class="main-content">
   <mat-card-title>Ask your question</mat-card-title>
   <mat-card-content class="card-content">
     <mat-form-field appearance="fill">
       <mat-label>Question Title</mat-label>
-      <input matInput placeholder="Your Question Title goes here..." [(ngModel)]="model.title">
+      <input [(ngModel)]="model.title" matInput placeholder="Your Question Title goes here...">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Question Message</mat-label>
-      <textarea matInput placeholder="Your Question Message goes here..." [(ngModel)]="model.message"></textarea>
+      <textarea [(ngModel)]="model.message" matInput placeholder="Your Question Message goes here..."></textarea>
     </mat-form-field>
 
   </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
-    <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon" (click)="onSubmit()">
+    <button (click)="onSubmit()" aria-label="Example icon button with a menu icon" color="primary" mat-icon-button>
       <mat-icon>save</mat-icon>
     </button>
-    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" [routerLink]="'/list'">
+    <button [routerLink]="'/list'" aria-label="Example icon button with a heart icon" color="warn" mat-icon-button>
       <mat-icon>cancel</mat-icon>
     </button>
   </mat-card-actions>

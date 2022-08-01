@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionService} from "../services/question.service";
 import {AnswerService} from "../services/answer.service";
@@ -10,11 +10,12 @@ import {Subscription} from "rxjs";
   styleUrls: ['./add-answer.component.scss']
 })
 export class AddAnswerComponent implements OnInit {
+  answerText?: string;
   private subscription?: Subscription;
   private questionId?: number;
-  answerText?: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private questionService: QuestionService, private answerService: AnswerService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private questionService: QuestionService, private answerService: AnswerService) {
+  }
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(params => {

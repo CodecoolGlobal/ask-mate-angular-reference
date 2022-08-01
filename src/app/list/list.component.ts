@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuestionService} from "../services/question.service";
-import {query} from "@angular/animations";
 import {Question} from "../entity/question";
 
 @Component({
@@ -12,7 +11,8 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'submissionTime', 'viewNumber', 'voteNumber'];
   dataSource: Question[] = [];
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService) {
+  }
 
   ngOnInit(): void {
     this.questionService.questions.subscribe(questions => {

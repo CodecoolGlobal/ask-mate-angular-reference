@@ -12,12 +12,13 @@ import {Answer} from "../entity/answer";
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit, OnDestroy {
-  private subscription?: Subscription;
   public questionId?: number;
   public question?: Observable<Question>;
   public answers?: Observable<Answer[]>;
+  private subscription?: Subscription;
 
-  constructor(private route: ActivatedRoute, private questionService: QuestionService, private answerService: AnswerService) { }
+  constructor(private route: ActivatedRoute, private questionService: QuestionService, private answerService: AnswerService) {
+  }
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(params => {

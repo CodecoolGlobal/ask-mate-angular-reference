@@ -21,33 +21,6 @@ export class QuestionService {
     }
   }
 
-  private loadQuestionsFromJson() {
-    console.log('Loading questions');
-    this.http.get<Question[]>('/assets/question.json', {responseType: 'json'}).subscribe((result: Question[]) => {
-      console.log('Loaded questions', result);
-      localStorage.setItem(QUESTION_LOCALSTORAGE_KEY, JSON.stringify(result));
-      this.loadQuestionsFromLocalstorage();
-    });
-  }
-
-  private questionsExistInLocalStorage(): boolean {
-    return !!localStorage.getItem(QUESTION_LOCALSTORAGE_KEY);
-  }
-
-
-  private loadQuestionsFromLocalstorage() {
-    this.$questions.next(this.getQuestionArrayFromLocalstorage());
-  }
-
-  private getQuestionArrayFromLocalstorage() {
-    const questions = localStorage.getItem(QUESTION_LOCALSTORAGE_KEY) || '';
-    return  JSON.parse(questions) as Question[];
-  }
-
-  private persistCurrentQuestions() {
-    localStorage.setItem(QUESTION_LOCALSTORAGE_KEY, JSON.stringify(this.$questions.getValue()));
-  }
-
   getQuestion(questionId: number): Observable<Question> {
     return this.questions
       .pipe(concatMap(values => values))
@@ -66,16 +39,6 @@ export class QuestionService {
     this.$questions.next(this.$questions.getValue().concat(result));
     this.persistCurrentQuestions();
     return result;
-  }
-
-  private getNextId(): number {
-    let currentHighestId = -1;
-    for (let question of this.$questions.getValue()) {
-      if (question.id > currentHighestId) {
-        currentHighestId = question.id;
-      }
-    }
-    return currentHighestId + 1;
   }
 
   addView(questionId: number) {
@@ -98,5 +61,41 @@ export class QuestionService {
     }
     this.$questions.next(questions);
     this.persistCurrentQuestions();
+  }
+
+  private loadQuestionsFromJson() {
+    console.log('Loading questions');
+    this.http.get<Question[]>('/assets/question.json', {responseType: 'json'}).subscribe((result: Question[]) => {
+      console.log('Loaded questions', result);
+      localStorage.setItem(QUESTION_LOCALSTORAGE_KEY, JSON.stringify(result));
+      this.loadQuestionsFromLocalstorage();
+    });
+  }
+
+  private questionsExistInLocalStorage(): boolean {
+    return !!localStorage.getItem(QUESTION_LOCALSTORAGE_KEY);
+  }
+
+  private loadQuestionsFromLocalstorage() {
+    this.$questions.next(this.getQuestionArrayFromLocalstorage());
+  }
+
+  private getQuestionArrayFromLocalstorage() {
+    const questions = localStorage.getItem(QUESTION_LOCALSTORAGE_KEY) || '';
+    return JSON.parse(questions) as Question[];
+  }
+
+  private persistCurrentQuestions() {
+    localStorage.setItem(QUESTION_LOCALSTORAGE_KEY, JSON.stringify(this.$questions.getValue()));
+  }
+
+  private getNextId(): number {
+    let currentHighestId = -1;
+    for (let question of this.$questions.getValue()) {
+      if (question.id > currentHighestId) {
+        currentHighestId = question.id;
+      }
+    }
+    return currentHighestId + 1;
   }
 }
