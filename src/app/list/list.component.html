@@ -4,32 +4,24 @@
   <mat-icon>edit</mat-icon>
 </button>
 
-<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
+<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
   <ng-container matColumnDef="title">
-    <th *matHeaderCellDef mat-header-cell> Title</th>
+    <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by ID"> Title</th>
     <td *matCellDef="let element" mat-cell><a [routerLink]="['/question', element.id]">{{element.title}}</a></td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="submissionTime">
-    <th *matHeaderCellDef mat-header-cell> Submission time</th>
-    <td *matCellDef="let element" mat-cell> {{element.submissionTime}} </td>
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Submission time</th>
+    <td *matCellDef="let element" mat-cell> {{element.submissionTime | date : 'short'}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
   <ng-container matColumnDef="viewNumber">
-    <th *matHeaderCellDef mat-header-cell> Views</th>
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Views</th>
     <td *matCellDef="let element" mat-cell> {{element.viewNumber}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
   <ng-container matColumnDef="voteNumber">
-    <th *matHeaderCellDef mat-header-cell> Votes</th>
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Votes</th>
     <td *matCellDef="let element" mat-cell> {{element.voteNumber}} </td>
   </ng-container>
 
